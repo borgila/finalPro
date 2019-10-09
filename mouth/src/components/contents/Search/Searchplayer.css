@@ -1,0 +1,36 @@
+.main{
+  width: 100%;
+  height: 80vh;
+  background-color: rgb(41, 114, 231,0.6);
+  display: flex;
+  justify-content: space-between;
+}
+.carrousel-teams{
+  width: 20%;
+  height: 100%;
+  overflow-y: scroll;
+  display: flex;
+  flex-direction: column;
+}
+.carrousel-teams::-webkit-scrollbar { 
+  display: none; 
+}
+.carrousel-teams-item{
+  width: 100%;
+  border-radius: 50%;
+}
+.img-team {
+  width: 100%;
+}
+.carrousel-players{
+  width:100%;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+}
+.carrousel-players-wrapper{
+  width: 80%;
+  height: 80%;
+  background-color: black;
+  align-self: center;
+}
