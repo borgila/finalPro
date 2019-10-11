@@ -3,13 +3,25 @@ import "./Searchplayer.css";
 import TeamService from "./TeamService";
 import { Link } from "react-router-dom";
 import UserCard from "./UserCard";
+import TableTeams from "./TableTeams";
+import TablePlayers from "./TablePlayers";
+import Chart from "../chart/Chart.js";
+import Select from "../Select/Select";
+import ChartBox from "../chart/ChartBox";
+
+
 export default class SearchPlayer extends Component {
   constructor(props) {
     super(props);
     this.teamService = new TeamService();
     this.state = {
       teams: [],
-      selectedTeam: null
+      selectedTeam: null,
+      teamsVisible: true,
+      selectedPlayer: null,
+      playerStats: [],
+      selectedStat: null,
+      validationError: ""
     };
   }
 
@@ -20,51 +32,49 @@ export default class SearchPlayer extends Component {
         teams: data.allTeams
       })
     );
-
-    // this.getTeam = teamCode => {
-    //    this.teamService.getOneTeam(teamCode.keyCode).then(data =>{
-    //      this.setState({
-    //       ...this.state,
-    //         selectedTeam: data
-    //       })
-    //    }
-    //   );
-    // };
   }
 
   selectTeam = team => {
-    this.setState({ ...this.state, selectedTeam: team });
+    this.setState(
+      { ...this.state, selectedTeam: team, teamsVisible: false }
+      // () => console.log(this.state.selectedTeam)
+    );
   };
 
+  selectPlayer = player => {
+    this.setState({ ...this.state, selectedPlayer: player });
+  };
+  selectStat = stat => {
+    console.log("GIMMMMEEEEE SOME")
+    this.setState({ ...this.state, selectedStat: stat });
+  };
   render() {
-    // console.log(this.state.teams);
     return (
       <div className="main">
         <UserCard></UserCard>
-        <div className="carrousel-teams">
-          {this.state.teams.map((team, idx) => {
-            return (
-              <div
-                key={idx}
-                onClick={() => this.selectTeam(team)}
-                className="carrousel-teams-item"
-              >
-                <img className="img-team" src={team.WikipediaLogoUrl} alt="#" />
-              </div>
-            );
-          })}
-        </div>
-        {this.state.selectedTeam ? (
-          <img
-            className="img-team"
-            src={this.state.selectedTeam.WikipediaLogoUrl}
-            alt="#"
+        {this.state.teamsVisible ? (
+          <TableTeams
+            teams={this.state.teams}
+            selectTeam={team => this.selectTeam(team)}
           />
-        ) : null}
-        );
-        <div className="carrousel-players">
-          <div className="carrousel-players-wrapper"></div>
-        </div>
+        ) : (
+          <TablePlayers
+            oneTeam={this.state.selectedTeam}
+            selectPlayer={player => this.selectPlayer(player)}
+          />
+        )}
+        <Select selectedPlayer={this.state.selectedPlayer}
+        validationError={this.state.validationError}
+        playerStats={this.state.playerStats}
+        selectStat={stat => this.selectStat(stat)}
+        />
+
+        <Chart selectStat={stat => this.selectStat(stat)}/>
+        {/* <ChartBox selectedPlayer={this.state.selectedPlayer}
+        validationError={this.state.validationError}
+        playerStats={this.state.playerStats} */}
+
+        />
       </div>
     );
   }

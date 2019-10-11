@@ -46,7 +46,7 @@ const newsSchema = new Schema(
     Date: Number,
     HomeOrAway: String,
     Opponent: String,
-    Started_YN: Number,
+    Started_YN: String,
     PlayerUrlString: String,
     TeamUrlString: String,
     GameStatus: String,
@@ -60,7 +60,8 @@ const newsSchema = new Schema(
     StaticRank: Number,
     FantasyPosition: Number,
     PositionRank: Number,
-    IsFavorite: Boolean
+    IsFavorite: Boolean,
+    PhotoUrl: String,
   },
   {
     timestamps: {
@@ -70,5 +71,5 @@ const newsSchema = new Schema(
   }
 );
 
-const Players = mongoose.model("Player", newsSchema);
-module.exports = Players;
+const Player = mongoose.model("Player", newsSchema);
+module.exports = Player;
