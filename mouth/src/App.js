@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "./App.css";
-import { Switch, Route, Redirect } from "react-router-dom";
+import { Switch, Route} from "react-router-dom";
 
 // import ProjectList from './components/projects/ProjectList';
 import Navbar from "./components/navbar/Navbar";
@@ -10,6 +10,7 @@ import Login from "./components/auth/Login";
 import AuthService from "./components/auth/AuthService";
 import SearchPlayer from "./components/contents/Search/SearchPlayer";
 import MyTeam from "./components/contents/MyTeam/MyTeam";
+import News from "./components/news/News";
 
 //App es la aplicación base, que se sirve del servicio AuthService para conectar con la bbdd
 class App extends Component {
@@ -86,7 +87,7 @@ class App extends Component {
               />
               <Route exact path="/" render={() => <SearchPlayer />} />
               <Route exact path="/myTeam" render={() => <MyTeam />} />
-              {/* <Route exact path="/comparePlayer" render={() => <ComparePlayer />} />  */}
+              <Route exact path="/news" render={() => <News />} /> 
             </Switch>
             {/* FOOTER */}
           </header>

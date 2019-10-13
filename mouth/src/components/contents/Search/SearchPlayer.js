@@ -1,13 +1,10 @@
 import React, { Component } from "react";
 import "./Searchplayer.css";
 import TeamService from "./TeamService";
-import { Link } from "react-router-dom";
-import UserCard from "./UserCard";
+import { UserCard } from "./UserCard";
 import TableTeams from "./TableTeams";
 import TablePlayers from "./TablePlayers";
 import Chart from "../chart/Chart.js";
-import Select from "../Select/Select";
-import ChartBox from "../chart/ChartBox";
 
 
 export default class SearchPlayer extends Component {
@@ -21,7 +18,12 @@ export default class SearchPlayer extends Component {
       selectedPlayer: null,
       playerStats: [],
       selectedStat: null,
-      validationError: ""
+      validationError: "",
+      defaultPlayer: {
+        Name: "Player",
+
+        PhotoUrl: require("../../../icons/player_default.png")
+      }
     };
   }
 
@@ -42,16 +44,21 @@ export default class SearchPlayer extends Component {
   };
 
   selectPlayer = player => {
-    this.setState({ ...this.state, selectedPlayer: player });
+    this.setState({ ...this.state, selectedPlayer: player }, () =>
+      console.log(this.state.selectedPlayer)
+    );
   };
   selectStat = stat => {
-    console.log("GIMMMMEEEEE SOME")
     this.setState({ ...this.state, selectedStat: stat });
   };
   render() {
     return (
       <div className="main">
-        <UserCard></UserCard>
+        {this.state.selectedPlayer !== null ? (
+          <UserCard selectedPlayer={this.state.selectedPlayer}></UserCard>
+        ) : (
+          <UserCard selectedPlayer={this.state.defaultPlayer}></UserCard>
+        )}
         {this.state.teamsVisible ? (
           <TableTeams
             teams={this.state.teams}
@@ -62,19 +69,12 @@ export default class SearchPlayer extends Component {
             oneTeam={this.state.selectedTeam}
             selectPlayer={player => this.selectPlayer(player)}
           />
+          
         )}
-        <Select selectedPlayer={this.state.selectedPlayer}
-        validationError={this.state.validationError}
-        playerStats={this.state.playerStats}
-        selectStat={stat => this.selectStat(stat)}
-        />
 
-        <Chart selectStat={stat => this.selectStat(stat)}/>
-        {/* <ChartBox selectedPlayer={this.state.selectedPlayer}
-        validationError={this.state.validationError}
-        playerStats={this.state.playerStats} */}
-
-        />
+        {this.state.selectedPlayer !== null && (
+          <Chart selectedPlayer={this.state.selectedPlayer} />
+        )}
       </div>
     );
   }

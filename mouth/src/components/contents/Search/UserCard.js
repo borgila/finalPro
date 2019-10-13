@@ -1,23 +1,14 @@
-import React, { Component } from 'react'
-import axios from 'axios';
-import PlayerService from "./PlayerService";
+import React from 'react'
+
 import "./UserCard.css"
 
 
-export default class Player extends Component {
-  constructor(props) {
-    super(props);
-    this.PlayerService = new PlayerService();
-    this.state = {
-      players: [],
-      selectedPlayer: []
-    };
-  }
-  render() {
+export const UserCard = props => {
+    const { Name, PhotoUrl } = props.selectedPlayer
     return (
       <div className="Usercard-container">
-        <div>mi jugador</div>
+        <div>{Name}</div>
+        <img src={PhotoUrl} alt="avatar"/>
       </div>
     )
-  }
 }

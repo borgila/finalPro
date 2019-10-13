@@ -8,7 +8,6 @@ router.get(`/searchAllTeams`, (req, res, next) => {
     .populate("Players")
     .then(allTeams => {
       res.json({ allTeams });
-      console.log("entra");
     });
 });
 //en ambos cambie el populate de Player a Players porque se qujaba la consola de que no reconocia el esquema "Players"
@@ -28,4 +27,5 @@ router.get(`/selectOnePlayer/:id`, (req, res, next) => {
     res.json({ foundPlayer });
   });
 });
+
 module.exports = router;

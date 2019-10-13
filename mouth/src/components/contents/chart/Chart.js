@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "./Chart.css";
-import { Line } from "react-chartjs-2";
+import { Bar } from "react-chartjs-2";
 let legend = {
   labels: {
     fontColor: "#000000",
@@ -21,21 +21,32 @@ export default class Chart extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      playerSelected: this.props.playerSelected
+      selectedPlayer: this.props.selectedPlayer
     };
+    this.chartUpdate = this.chartUpdate.bind(this);
+  }
+  componentDidMount() {
+    // console.log("PROOOOOPS", this.props);
+    // console.log("STAAAATE UNATES", this.state);
   }
   componentWillReceiveProps(nextProps) {
-    this.setState({ ...this.state, playerSelected: nextProps.playerSelected });
+    this.setState({ ...this.state, selectedPlayer: nextProps.selectedPlayer });
   }
   componentDidUpdate() {
     this.chartUpdate();
   }
   chartUpdate() {
+    const {
+      Assists,
+      FreeThrowsPercentage,
+      TwoPointersPercentage,
+      Points
+    } = this.state.selectedPlayer;
     let data = {
-      labels: [0, 20, 40, 60],
+      labels: ["assists", "rebounds", "points", "three pointers percentage"],
       datasets: [
         {
-          label: "Weight Kg",
+          label: "Your Player",
           fill: true,
           lineTension: 0.5,
           backgroundColor: "rgba(51, 109, 233,0.4)",
@@ -60,23 +71,27 @@ export default class Chart extends Component {
           //         fontColor: "#00ff00",
           //         fontSize: 200
           //     }
-          data: []
+          data: [Assists, FreeThrowsPercentage, TwoPointersPercentage, Points]
         }
       ]
     };
-    if (!!this.state.playerSelected)
-      this.state.playerSelected.map(
-        stat => (
-          data.labels.push(stat.Name),
-          data.datasets[0].data.push(stat.FieldGoalsPercentage)
-        )
-      );
     return data;
   }
   render() {
-    // console.log(this.props.player);
+      
+    // console.log(this.state.selectedPlayer);
+
+    let plStats = [];
+    for (let key in this.state.selectedPlayer) {
+      {
+        plStats = [...plStats, key + ": " + this.state.selectedPlayer[key]];
+      }
+    }
     return (
-      <Line data={() => this.chartUpdate()} legend={legend} options={options} />
+      <React.Fragment  >
+      
+        <Bar data={this.chartUpdate} legend={legend} options={options} />
+      </React.Fragment>
     );
   }
 }

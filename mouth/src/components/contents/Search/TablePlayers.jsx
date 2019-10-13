@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import TeamService from "./TeamService";
 
 export default class TablePlayers extends Component {
   constructor(props) {
@@ -25,15 +24,14 @@ export default class TablePlayers extends Component {
           // console.log(player)
           return (
             <div key={idx}>
-              <p
-                onClick={() => this.props.selectPlayer(player)}
-                
-              >
-                {player.Name}
-              </p>
               <div>
-                <img src={player.PhotoUrl} alt=""/>
+                <img
+                  onClick={() => this.props.selectPlayer(player)}
+                  src={player.PhotoUrl}
+                  alt=""
+                />
               </div>
+              <p>{player.Name}</p>
             </div>
           );
         })}

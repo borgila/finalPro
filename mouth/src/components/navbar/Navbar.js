@@ -1,10 +1,11 @@
 // navbar/Navbar.js
 
 import React, { Component } from "react";
-import { Link, Redirect } from "react-router-dom";
+import { Link } from "react-router-dom";
 import AuthService from "../auth/AuthService";
 
 import "./Navbar.css";
+
 
 class Navbar extends Component {
   constructor(props) {
@@ -44,7 +45,7 @@ class Navbar extends Component {
           ) : (
             <Link to={`/login`}>My team</Link>
           )}
-          <Link to={`/searchPlayer`}>Search</Link>
+          <Link to={`/news`}>News</Link>
           {/* <Link to={`/comparePlayer/${data._id}`}></Link> */}
         </div>
       </nav>

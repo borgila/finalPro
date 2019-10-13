@@ -1,5 +1,6 @@
 canvas{
-  width: 300px !important;
-  height: 300px !important;
-  background-color: lightcoral;
+  width: 600px !important;
+  height: 600px !important;
+  background-color: rgba(0, 0, 0, 0.219) ;
+  
 }
