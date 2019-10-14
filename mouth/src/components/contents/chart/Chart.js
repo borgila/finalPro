@@ -40,13 +40,13 @@ export default class Chart extends Component {
       Assists,
       FreeThrowsPercentage,
       TwoPointersPercentage,
-      Points
+      Points,Name
     } = this.state.selectedPlayer;
     let data = {
       labels: ["assists", "rebounds", "points", "three pointers percentage"],
       datasets: [
         {
-          label: "Your Player",
+          label: Name,
           fill: true,
           lineTension: 0.5,
           backgroundColor: "rgba(51, 109, 233,0.4)",

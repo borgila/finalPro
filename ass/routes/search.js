@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const Team = require("../models/Team");
 const Player = require("../models/Player");
+const User = require("../models/User");
 
 router.get(`/searchAllTeams`, (req, res, next) => {
   Team.find({})
@@ -27,5 +28,28 @@ router.get(`/selectOnePlayer/:id`, (req, res, next) => {
     res.json({ foundPlayer });
   });
 });
+router.post(`/addOnePlayer/:playerID/:userID`, (req, res) => {
+  // console.log(req.params.userID)
+  // console.log(req.params.playerID)
+  console.log("----------------------------")
+  console.log(req.user)
+  
+  User.findByIdAndUpdate(req.params.userID, {
+    $push: { followedPlayers: req.params.playerID }
+  }, {new:true}
+  )
+  .then(foundPlayer => {
+    console.log(foundPlayer)
+  })
+  .catch(err=>console.log(err))
+  
+});
 
+router.get(`/showMyTeam`,(req,res)=>{
+  User
+  .findById(req.user._id)
+  .populate("followedPlayers")
+  .then(myPlayers=>res.json({myPlayers}))
+  .catch(err=>console.log(err))
+})
 module.exports = router;

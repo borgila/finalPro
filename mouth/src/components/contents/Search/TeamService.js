@@ -21,6 +21,10 @@ class TeamService {
   getOnePlayer = _id => {
     return this.service.get(`/selectOnePlayer/${_id}`).then(res => res.data);
   };
+  showMyTeam = ()=>{
+    return this.service.get(`/showMyTeam`)
+    .then(res=>res.data)
+  }
 }
 
 export default TeamService;
