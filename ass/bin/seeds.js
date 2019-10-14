@@ -5,11 +5,14 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 mongoose
-  .connect("mongodb://localhost/reactAuthentication", {
-    useNewUrlParser: true
-  })
+  .connect(
+    "mongodb+srv://assmouth:mouthass@cluster0-1bvfb.mongodb.net/nbas?retryWrites=true&w=majority",
+    {
+      useNewUrlParser: true
+    }
+  )
   .then(x => {
-    toDo()
+    toDo();
     console.log(
       `Connected to Mongo! Database name: "${x.connections[0].name}"`
     );
@@ -617,17 +620,77 @@ const teams = [
     WikipediaWordMarkUrl: null,
     GlobalTeamID: 20000030,
     NbaDotComTeamID: 1610612758
-  },
-  
+  }
 ];
 
+const dataPlayersPhoto = require("./photoplayers.json");
+const dataPlayers = require("./players.json");
+const Player = require("../models/Player");
+const PlayerDetails = require("../models/PlayerDet");
 
-function toDo(){
+function toDo() {
+  Player.deleteMany().then(() => {
+    Team.deleteMany().then(() => {
+      Team.insertMany(teams).then(() => {
+        console.log("done adding teams");
 
-  Team.deleteMany().then(()=>{
-  
-    Team.insertMany(teams).then(()=>{
-      console.log("done")
-    })
-  })
+        Player.insertMany(dataPlayers)
+          .then(data => {
+            console.log("done", data.length);
+            Player.find().then(allPlayers => {
+              let totalPlayers = allPlayers.length;
+              let currentProcessedPlayer = 0;
+              allPlayers.map(player => {
+                // console.log(player._id)
+                Team.findOneAndUpdate(
+                  { TeamID: player.TeamID },
+                  { $push: { Players: player._id } },
+                  { new: true }
+                ).then(() => {
+                  currentProcessedPlayer++;
+
+                  console.log(
+                    "added players to teams: " +
+                      player.Name +
+                      " :::: " +
+                      currentProcessedPlayer +
+                      "/" +
+                      totalPlayers
+                  );
+
+                  if (currentProcessedPlayer === totalPlayers) {
+                    PlayerDetails.deleteMany().then(playerDetails => {
+                      PlayerDetails.insertMany(dataPlayersPhoto)
+                        .then(data => {
+                          PlayerDetails.find()
+                            .then(allPlayers => {
+                              allPlayers.forEach(player => {
+                                Player.findOneAndUpdate(
+                                  { PlayerID: player.PlayerID },
+                                  { $set: { PhotoUrl: player.PhotoUrl } }
+                                )
+                                  .then(act => {
+                                    console.log("actualizadas photos");
+                                    process.exit(0);
+                                  })
+                                  .catch(err => console.log(err));
+                              });
+                            })
+                            .catch(err => console.log(err, "findAll"));
+                        })
+                        .catch(err => {
+                          console.log(err), "insert playersPhoto";
+                        });
+                    });
+                  }
+                });
+              });
+            });
+          })
+          .catch(err => {
+            console.log(err), "insert players";
+          });
+      });
+    });
+  });
 }
