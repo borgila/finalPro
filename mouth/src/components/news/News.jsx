@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import axios from "axios";
-import Iframe from "react-iframe";
 
 export default class News extends Component {
   constructor(props) {
@@ -37,7 +36,6 @@ export default class News extends Component {
               <h1>{el.headline} </h1>
               <p>{el.description} </p>
 
-              <Iframe url={el.links.web.href} width="450" height="450px" />
             </div>
           );
         })}
