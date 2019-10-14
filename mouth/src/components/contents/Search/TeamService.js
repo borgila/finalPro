@@ -3,7 +3,8 @@ import axios from "axios";
 class TeamService {
   constructor() {
     this.service = axios.create({
-      baseURL: "http://localhost:4000/api/search",
+      baseURL: `${process.env.REACT_APP_API_URL}/api/search`,
+      // baseURL: "http://localhost:4000/api/search",
       withCredentials: true
     });
   }
