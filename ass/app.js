@@ -14,7 +14,7 @@ const cors = require('cors');
 const { MONGO_URL } = process.env;
 mongoose.Promise = Promise;
 mongoose
-  .connect(MONGO_URL)
+  .connect(MONGO_URL,{useNewUrlParser: true,useUnifiedTopology: true})
   .then(() => {
     console.log(`Connected to Mongo on ${MONGO_URL}`)
   }).catch(err => {
