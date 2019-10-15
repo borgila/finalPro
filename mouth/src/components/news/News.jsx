@@ -35,7 +35,7 @@ export default class News extends Component {
             <div key={index}>
               <h1>{el.headline} </h1>
               <p>{el.description} </p>
-              <img src={el.images[0].url} alt="#" />
+
             </div>
           );
         })}

@@ -11,12 +11,12 @@ const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
 const cors = require('cors');
 
-const { DBURL } = process.env;
+const { MONGO_URL } = process.env;
 mongoose.Promise = Promise;
 mongoose
-  .connect(DBURL)
+  .connect(MONGO_URL,{useNewUrlParser: true,useUnifiedTopology: true})
   .then(() => {
-    console.log(`Connected to Mongo on ${DBURL}`)
+    console.log(`Connected to Mongo on ${MONGO_URL}`)
   }).catch(err => {
     console.error('Error connecting to mongo', err)
   });
@@ -28,7 +28,7 @@ const app = express();
 
 // Middleware Setup
 var whitelist = [
-  'http://localhost:3000'
+  'http://localhost:3000',`https://nbas.herokuapp.com`
 ];
 var corsOptions = {
   origin: function(origin, callback){
@@ -58,10 +58,12 @@ app.use(session({
 }));
 require('./passport')(app);
 
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'hbs');
 app.use(express.static(path.join(__dirname, 'public')));
+<<<<<<< HEAD
 // app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
+=======
+app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+>>>>>>> dac1d91ac5ae900e49fdfac866a2e66e392f02c7
 
 
 
@@ -75,4 +77,8 @@ app.use('/api/auth', authRouter);
 const searchRouter = require('./routes/search');
 app.use('/api/search', searchRouter);
 
+
+app.use((req, res, next) => {
+  res.sendFile(__dirname + '/public/index.html');
+ });
 module.exports = app;

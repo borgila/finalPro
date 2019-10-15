@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import "./Searchplayer.css";
 import TeamService from "./TeamService";
-import { UserCard } from "./UserCard";
+import  UserCard  from "./UserCard";
 import TableTeams from "./TableTeams";
 import TablePlayers from "./TablePlayers";
 import Chart from "../chart/Chart.js";
-
+import Carru from "./Carru";
 
 export default class SearchPlayer extends Component {
   constructor(props) {
@@ -21,7 +21,7 @@ export default class SearchPlayer extends Component {
       validationError: "",
       defaultPlayer: {
         Name: "Player",
-
+        _id: 6969,
         PhotoUrl: require("../../../icons/player_default.png")
       }
     };
@@ -69,7 +69,9 @@ export default class SearchPlayer extends Component {
             oneTeam={this.state.selectedTeam}
             selectPlayer={player => this.selectPlayer(player)}
           />
-          
+          //  <Carru   teams={this.state.teams}
+          // selectTeam={team => this.selectTeam(team)}
+          // />
         )}
 
         {this.state.selectedPlayer !== null && (
