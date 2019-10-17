@@ -3,12 +3,12 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import "./News.css";
 
-
 export default class News extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      news: []
+      news: [],
+
     };
   }
   getNews = () => {
@@ -30,18 +30,20 @@ export default class News extends Component {
   }
 
   render() {
-    console.log(this.state.news);
+    
     return (
       <React.Fragment>
-        <div className="news-main" >
+        <div className="news-main">
           <Link to={`/`}>Home</Link>
           {this.state.news.map((el, index) => {
             return (
-              <div className="single-new" key={index}>
-                <h1 className="new-title">{el.headline} </h1>
-                <p className="new-text">{el.description} </p>
-                <img className="new-image" src={el.images[0].url} alt="" />
-              </div>
+              <a href={el.links.web.href}>
+                <div className="single-new" key={index}>
+                  <h1 className="new-title">{el.headline} </h1>
+                  <p className="new-text">{el.description} </p>
+                  <img className="new-image" src={el.images[0].url} alt="" />
+                </div>
+               </a>
             );
           })}
         </div>
