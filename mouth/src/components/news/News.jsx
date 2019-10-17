@@ -43,7 +43,7 @@ export default class News extends Component {
                   <p className="new-text">{el.description} </p>
                   <img className="new-image" src={el.images[0].url} alt="" />
                 </div>
-               </a>
+              b </a>
             );
           })}
         </div>
