@@ -1,22 +1,51 @@
-.nav-style .header {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	width:100%;
+.nav-style {
+	width: 100vw;
+	display: grid;
+	grid-template: 30px 70px / 1fr;
 }
-.nav-style{
-	width: 100%;
-	height: 100px;
-}
+
 .nav-bar{
-	width:100%;
-	height: 30px;
-	background-color: red;
-	display: flex;
-	justify-content: flex-end;
-	align-content: center;
+	padding: 0 50px;
+	box-sizing: border-box;
+	display: grid;
+	justify-content: end;
+	width: 100%;
+	background-color:#e11647;
 	color: black;
 }
+.nav-bar-items {
+  display: grid;
+  grid-auto-flow: column;
+  grid-gap: 10px;
+}
+
+.nav-big {
+	box-sizing: border-box;
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	padding: 0 50px;
+}
+
+.logo-nav{
+	display: grid;
+	justify-self: start;
+	height: 100%;
+	align-items: center
+}
+
+.logo-img {
+	height: 80%;
+}
+
+.nav-big-items {
+	display: grid;
+	height: 100%;
+	justify-content: end;
+	align-items: center;
+	grid-auto-flow: column;
+	grid-gap:20px;
+}
+/* 
 .nav-bar-logingButtons{
 	width:100%;
 	height: 100px;
@@ -27,5 +56,16 @@
 	color: black;
 }
 .logo-nav{
-	max-width: 10%;	
-}
+	display: grid;
+	justify-self: start;
+	height: 100%;
+	align-items: center
+/* }
+.logo-img{
+	height: 80%;
+} */
+/* .links-wrapper{
+	display: flex;
+	justify-content: space-evenly
+
+} */

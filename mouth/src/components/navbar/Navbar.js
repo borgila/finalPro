@@ -31,7 +31,7 @@ class Navbar extends Component {
       <nav className="nav-style">
         <div className="nav-bar">
           {this.state.loggedInUser ? (
-            <div>
+            <div className="nav-bar-items">
               <b>{this.state.loggedInUser.username}</b>{" "}
               <span onClick={this.handleLogout}>logout</span>
             </div>
@@ -42,16 +42,18 @@ class Navbar extends Component {
             </div>
           )}
         </div>
-        <div className="logo-nav">
-          <img src={this.state.logo} />
-        </div>
-        <div>
-          {this.state.loggedInUser ? (
-            <Link to={`/myTeam`}>My profile</Link>
-          ) : (
-            <Link to={`/login`}>My team</Link>
-          )}
-          <Link to={`/news`}>News</Link>
+        <div className="nav-big">
+          <div className="logo-nav">
+            <img className="logo-img"src={this.state.logo} />
+          </div>
+          <div className="nav-big-items">
+            {this.state.loggedInUser ? (
+              <Link to={`/myTeam`}>My profile</Link>
+            ) : (
+              <Link to={`/login`}>My team</Link>
+            )}
+            <Link to={`/news`}>News</Link>
+          </div>
         </div>
       </nav>
     );

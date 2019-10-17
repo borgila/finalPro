@@ -41,7 +41,7 @@ export default class TablePlayers extends Component {
 
                     />
                   ) : (
-                    <img  src={this.state.avatar}/>
+                    <img className="default-img" src={this.state.avatar}/>
                   )}
                 </div>
                 <p>{player.Name}</p>

@@ -37,13 +37,13 @@ export default class News extends Component {
           <Link to={`/`}>Home</Link>
           {this.state.news.map((el, index) => {
             return (
-              <a href={el.links.web.href}>
+              <a className="single-new-wrap" href={el.links.web.href}>
                 <div className="single-new" key={index}>
                   <h1 className="new-title">{el.headline} </h1>
                   <p className="new-text">{el.description} </p>
                   <img className="new-image" src={el.images[0].url} alt="" />
                 </div>
-              b </a>
+               </a>
             );
           })}
         </div>

@@ -43,10 +43,10 @@ class UserCard extends Component {
     return (
       <React.Fragment>
         <div className="Usercard-container">
-          <div>{Name}</div>
+        <h5 className="user-team">{Team}</h5>
           <img src={PhotoUrl} alt="avatar" />
+          <div>{Name}</div>
           <h4 className="user-position">{Position}</h4>
-          <h5 className="user-team">{Team}</h5>
           <button className="button"
             onClick={(e, _id) =>
               this.addPlayer(e, this.state.selectedPlayer._id)

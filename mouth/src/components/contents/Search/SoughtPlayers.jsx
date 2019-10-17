@@ -28,9 +28,10 @@ export default class SoughtPlayers extends Component {
                       alt={player.Name}
                     />
                   ) : (
-                    <img src={this.state.avatar} />
+                    <img className="default-img" src={this.state.avatar} />
                   )}
                 </div>
+                <p>{player.Team}</p>
                 <p>{player.Name}</p>
               </div>
             );

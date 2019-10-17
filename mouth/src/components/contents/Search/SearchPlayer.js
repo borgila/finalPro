@@ -81,15 +81,41 @@ export default class SearchPlayer extends Component {
     console.log(this.state);
     return (
       <React.Fragment>
-        <input
-          value={this.state.value}
-          onChange={e => this.changeValue(e)}
-          placeholder="Search player"
-          type="text"
-        ></input>
         {/* <h3>{this.state.value}</h3> */}
         <div className="main">
-          <div className="user-chart">
+          <input
+            className="seek-bar"
+            value={this.state.value}
+            onChange={e => this.changeValue(e)}
+            placeholder="Search player"
+            type="text"
+          ></input>
+
+          {this.state.selectedPlayer !== null ? (
+            <div className="user-chart">
+              <UserCard selectedPlayer={this.state.selectedPlayer}></UserCard>
+              <div className="chart-main">
+                <div className="chart-wrapper">
+                  {this.state.selectedPlayer !== null && (
+                    <Chart selectedPlayer={this.state.selectedPlayer} />
+                  )}
+                </div>
+              </div>
+            </div>
+          ) : (
+            <div className="user-chart hidden">
+              {/* <UserCard selectedPlayer={this.state.defaultPlayer}></UserCard> */}
+              <div className="chart-main">
+                <div className="chart-wrapper">
+                  {this.state.selectedPlayer !== null && (
+                    <Chart selectedPlayer={this.state.selectedPlayer} />
+                  )}
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* <div className="user-chart">
             {this.state.selectedPlayer !== null ? (
               <UserCard selectedPlayer={this.state.selectedPlayer}></UserCard>
             ) : (
@@ -102,7 +128,7 @@ export default class SearchPlayer extends Component {
                 )}
               </div>
             </div>
-          </div>
+          </div> */}
 
           {this.state.soughtPlayers.length > 300 ||
           this.state.soughtPlayers.length === 0 ? (
