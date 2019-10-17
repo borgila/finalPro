@@ -1,0 +1,32 @@
+.news-main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.single-new {
+  width: 100%;
+  height: 500px;
+  background-color: bisque;
+  margin: 10px 5px;
+}
+
+.new-title{
+
+}
+
+.new-text {
+
+}
+
+.new-text {
+
+}
+
+.new-image {
+  max-width: 200px;
+}
+/* .single-new{
+ max-width:40%; */

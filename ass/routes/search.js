@@ -45,6 +45,36 @@ router.post(`/addOnePlayer/:playerID/:userID`, (req, res) => {
   
 });
 
+
+router.get(`/searchPlayer/:name`,(req,res)=>{
+  Player.findOne({name:{"$regex": req.params.name,"$options":"i"}})
+  // Pet.find({ owner: { "$regex": req.params.mail, "$options": "i" }})
+  .then(foundPlayer=>{
+    console.log(foundPlayer)
+    // res.json({foundPlayer})
+  })
+  .catch(err=>console.log(err))
+})
+
+router.delete(`/deletePlayer/:playerID`, (req, res) => {
+  // console.log(req.params.userID)
+  // console.log(req.params.playerID)
+  console.log("----------------------------")
+  console.log(req.user)
+  
+  User.findByIdAndUpdate(req.user._id, {
+    $pull: { followedPlayers: req.params.playerID }
+  }, {new:true}
+  )
+  .populate("followedPlayers")
+
+  .then(removedPlayer => {
+    res.json({removedPlayer})
+  })
+  .catch(err=>console.log(err))
+  
+});
+
 router.get(`/showMyTeam`,(req,res)=>{
   User
   .findById(req.user._id)

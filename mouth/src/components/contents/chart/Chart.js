@@ -23,6 +23,7 @@ export default class Chart extends Component {
     this.state = {
       selectedPlayer: this.props.selectedPlayer
     };
+
     this.chartUpdate = this.chartUpdate.bind(this);
   }
   componentDidMount() {
@@ -40,10 +41,13 @@ export default class Chart extends Component {
       Assists,
       FreeThrowsPercentage,
       TwoPointersPercentage,
-      Points,Name
+      ThreePointersPercentage,
+      Points,
+      FantasyPoints,
+      Name
     } = this.state.selectedPlayer;
     let data = {
-      labels: ["assists", "rebounds", "points", "three pointers percentage"],
+      labels: ["Assists", "FTP", "FGP", "3PP", "Points", "Fantasy"],
       datasets: [
         {
           label: Name,
@@ -71,15 +75,21 @@ export default class Chart extends Component {
           //         fontColor: "#00ff00",
           //         fontSize: 200
           //     }
-          data: [Assists, FreeThrowsPercentage, TwoPointersPercentage, Points]
+          data: [
+            Assists,
+            FreeThrowsPercentage,
+            TwoPointersPercentage,
+            ThreePointersPercentage,
+            Points,
+            FantasyPoints
+          ]
         }
       ]
     };
     return data;
   }
   render() {
-      
-    // console.log(this.state.selectedPlayer);
+    console.log(this.state.selectedPlayer);
 
     let plStats = [];
     for (let key in this.state.selectedPlayer) {
@@ -88,8 +98,7 @@ export default class Chart extends Component {
       }
     }
     return (
-      <React.Fragment  >
-      
+      <React.Fragment>
         <Bar data={this.chartUpdate} legend={legend} options={options} />
       </React.Fragment>
     );

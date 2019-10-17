@@ -1,9 +1,10 @@
 import React, { Component } from "react";
+import { withRouter } from "react-router-dom";
 import "./UserCard.css";
 import Axios from "axios";
 import AuthService from "../../../components/auth/AuthService";
 
-export default class UserCard extends Component {
+class UserCard extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -28,40 +29,35 @@ export default class UserCard extends Component {
           selectedPlayer +
           "/" +
           currentUser._id
-     ).then(res => {
-        res=res.data
-        console.log(res.data)
+      ).then(res => {
+        res = res.data;
+        console.log(res.data);
       });
     });
+    this.props.history.push("/myTeam");
   };
   render() {
-    const { Name, PhotoUrl, _id } = this.state.selectedPlayer;
-    
+    const { Name, PhotoUrl, _id, Position, Team } = this.state.selectedPlayer;
+
     // console.log(this.state.selectedPlayer)
     return (
-      <div className="Usercard-container">
-        <div>{Name}</div>
-        <img src={PhotoUrl} alt="avatar" />
-        <button
-          onClick={(e, _id) => this.addPlayer(e, this.state.selectedPlayer._id)}
-        >
-          Add player
-        </button>
-      </div>
+      <React.Fragment>
+        <div className="Usercard-container">
+          <div>{Name}</div>
+          <img src={PhotoUrl} alt="avatar" />
+          <h4 className="user-position">{Position}</h4>
+          <h5 className="user-team">{Team}</h5>
+          <button className="button"
+            onClick={(e, _id) =>
+              this.addPlayer(e, this.state.selectedPlayer._id)
+            }
+          >
+            Follow this player
+          </button>
+        </div>
+      </React.Fragment>
     );
   }
 }
 
-// import React from 'react'
-
-// import "./UserCard.css"
-
-// export const UserCard = props => {
-//     const { Name, PhotoUrl } = props.selectedPlayer
-//     return (
-//       <div className="Usercard-container">
-//         <div>{Name}</div>
-//         <img src={PhotoUrl} alt="avatar"/>
-//       </div>
-//     )
-// }
+export default withRouter(UserCard);

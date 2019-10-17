@@ -1,41 +1,55 @@
 import React, { Component } from "react";
+import "./TablePlayer.css";
+require("../../../icons/player_default.png")
 
 export default class TablePlayers extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      oneTeam: this.props.oneTeam,
-      selectedPlayer: null
+      oneTeam: {},
+      avatar:require("../../../icons/player_default.png"),
+      
     };
   }
-  componentWillReceiveProps(nextProps) {
-    this.setState({
-      ...this.state,
-      selectedPlayer: nextProps.selectedPlayer
-    });
+  // componentWillReceiveProps(nextProps) {
+  //   this.setState({
+  //     ...this.state,
+  //     selectedPlayer: nextProps.selectedPlayer
+  //   });
+  // }
+
+  static getDerivedStateFromProps(props, state) {
+    return (state.oneTeam = props.oneTeam);
   }
 
   render() {
     // console.log(this.props.oneTeam)
     return (
-      <div>
-        {this.state.oneTeam.Players.map((player, idx) => {
-          // console.log(player)
-          return (
-            <div key={idx}>
-              <div>
-                <img
-                  onClick={() => this.props.selectPlayer(player)}
-                  src={player.PhotoUrl}
-                  alt=""
-                />
+      <React.Fragment>
+        <div className="players-container">
+          {this.state.oneTeam.Players.map((player, idx) => {
+            // console.log(player)
+            return (
+              <div className="player-search-main" key={idx}>
+                <div className="player-search-wrapper" >
+                  {player.PhotoUrl ? (
+                    <img
+                      onClick={() => this.props.selectPlayer(player)}
+                      src={player.PhotoUrl}
+                      alt={player.Name}
+
+                    />
+                  ) : (
+                    <img  src={this.state.avatar}/>
+                  )}
+                </div>
+                <p>{player.Name}</p>
               </div>
-              <p>{player.Name}</p>
-            </div>
-          );
-        })}
-      </div>
+            );
+          })}
+        </div>
+      </React.Fragment>
     );
   }
 }

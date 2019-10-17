@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import "./Carru.css"
 
 export default class Carru extends Component {
   constructor(props) {
@@ -9,15 +10,12 @@ export default class Carru extends Component {
       selectedTeam: null
     };
   }
-  componentWillReceiveProps(nextProps) {
-    this.setState({
-      ...this.state,
-      teams: nextProps.teams
-    });
+  static getDerivedStateFromProps(props, state) {
+    return state.teams = props.teams;
   }
   render() {
     return (
-      <div>
+      <React.Fragment>
         <div className="carrousel-teams">
           {this.state.teams.map((team, idx) => {
             return (
@@ -26,12 +24,12 @@ export default class Carru extends Component {
                 onClick={() => this.props.selectTeam(team)}
                 className="carrousel-teams-item"
               >
-                <img className="img-team" src={team.WikipediaLogoUrl} alt="#" />
+                <img className="img-item" src={team.WikipediaLogoUrl} alt="#" />
               </div>
             );
           })}
         </div>
-      </div>
+      </React.Fragment>
     );
   }
 }

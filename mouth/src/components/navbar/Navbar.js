@@ -6,11 +6,15 @@ import AuthService from "../auth/AuthService";
 
 import "./Navbar.css";
 
-
 class Navbar extends Component {
   constructor(props) {
     super(props);
-    this.state = { loggedInUser: null };
+    this.state = {
+      loggedInUser: null,
+      logo: require("../../icons/basketball.png")
+      // logo:require("../../../icons/basketball.png")
+    };
+
     this.service = new AuthService();
   }
 
@@ -38,7 +42,9 @@ class Navbar extends Component {
             </div>
           )}
         </div>
-        <div>logo</div>
+        <div className="logo-nav">
+          <img src={this.state.logo} />
+        </div>
         <div>
           {this.state.loggedInUser ? (
             <Link to={`/myTeam`}>My profile</Link>
@@ -46,7 +52,6 @@ class Navbar extends Component {
             <Link to={`/login`}>My team</Link>
           )}
           <Link to={`/news`}>News</Link>
-          {/* <Link to={`/comparePlayer/${data._id}`}></Link> */}
         </div>
       </nav>
     );

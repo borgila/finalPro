@@ -671,7 +671,7 @@ function toDo() {
                                 )
                                   .then(act => {
                                     console.log("actualizadas photos");
-                                    process.exit(0);
+                                    //process.exit(0);
                                   })
                                   .catch(err => console.log(err));
                               });

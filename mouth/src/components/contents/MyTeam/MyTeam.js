@@ -20,16 +20,38 @@ export default class MyTeam extends Component {
     });
   }
 
+  removePlayer = (e, dude) => {
+    this.service.removePlayer(dude._id).then(newRoster => {
+      console.log(newRoster);
+      this.setState({
+        ...this.state,
+        myRoster: newRoster.removedPlayer.followedPlayers
+      });
+    });
+  };
+// let plStats = [];
+  //   for (let key in this.state.selectedPlayer) {
+  //     {
+  //       plStats = [...plStats, key + ": " + this.state.selectedPlayer[key]];
+  //     }
+  //   }
   render() {
+    console.log(this.state);
     return (
-      <div>
-      <Link to={`/`}>Home</Link>
-        <div>
+      <div className="myTeam-main">
+        <Link to={`/`}>Home</Link>
+        <div className="myTeam-container">
           {this.state.myRoster.map((dude, idx) => {
             return (
-              <div key={idx}>
+              <div className="myTeam-item" key={idx}>
                 <img src={dude.PhotoUrl} />
-                <p>{dude.Name}</p>
+                <h2 className="card-name"> {dude.Name}</h2>
+                <h3>Position: {dude.Position}</h3>
+                <h4>Team: {dude.Team}</h4>
+                <h4>Fantasy {dude.FantasyPoints}</h4>
+                <button onClick={e => this.removePlayer(e, dude)}>
+                  Remove player
+                </button>
               </div>
             );
           })}
@@ -38,4 +60,3 @@ export default class MyTeam extends Component {
     );
   }
 }
-

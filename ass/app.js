@@ -11,12 +11,12 @@ const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
 const cors = require('cors');
 
-const { MONGO_URL } = process.env;
+const { DBURL } = process.env;
 mongoose.Promise = Promise;
 mongoose
-  .connect(MONGO_URL,{useNewUrlParser: true,useUnifiedTopology: true})
+  .connect(DBURL,{useNewUrlParser: true,useUnifiedTopology: true})
   .then(() => {
-    console.log(`Connected to Mongo on ${MONGO_URL}`)
+    console.log(`Connected to Mongo on ${DBURL}`)
   }).catch(err => {
     console.error('Error connecting to mongo', err)
   });
@@ -59,11 +59,7 @@ app.use(session({
 require('./passport')(app);
 
 app.use(express.static(path.join(__dirname, 'public')));
-<<<<<<< HEAD
 // app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
-=======
-app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
->>>>>>> dac1d91ac5ae900e49fdfac866a2e66e392f02c7
 
 
 

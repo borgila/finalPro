@@ -1,0 +1,18 @@
+.table-teams {
+  width: 100%;
+  display: flex;
+  justify-content:center;
+  align-content: space-between;
+  flex-wrap: wrap;
+}
+.table-teams-item {   
+  width: 10%;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  padding: 2%;
+}
+.img-team{
+  width: 10vw;
+  height: 10vw;
+}

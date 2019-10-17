@@ -1,5 +1,8 @@
 import React, { Component } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
+import "./News.css";
+
 
 export default class News extends Component {
   constructor(props) {
@@ -29,17 +32,20 @@ export default class News extends Component {
   render() {
     console.log(this.state.news);
     return (
-      <div>
-        {this.state.news.map((el, index) => {
-          return (
-            <div key={index}>
-              <h1>{el.headline} </h1>
-              <p>{el.description} </p>
-
-            </div>
-          );
-        })}
-      </div>
+      <React.Fragment>
+        <div className="news-main" >
+          <Link to={`/`}>Home</Link>
+          {this.state.news.map((el, index) => {
+            return (
+              <div className="single-new" key={index}>
+                <h1 className="new-title">{el.headline} </h1>
+                <p className="new-text">{el.description} </p>
+                <img className="new-image" src={el.images[0].url} alt="" />
+              </div>
+            );
+          })}
+        </div>
+      </React.Fragment>
     );
   }
 }
