@@ -13,7 +13,7 @@ export default class News extends Component {
   }
   getNews = () => {
     return axios
-      .get(` http://site.api.espn.com/apis/site/v2/sports/basketball/nba/news`)
+      .get(` https://site.api.espn.com/apis/site/v2/sports/basketball/nba/news`)
 
       .then(res => res);
   };
