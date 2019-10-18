@@ -2,7 +2,7 @@
   overflow-x: scroll;
   display: flex;
   flex-direction: row;
-  outline: 1px solid rgb(249, 210, 250);
+ 
 }
 .carrousel-teams::-webkit-scrollbar {
   display: none;

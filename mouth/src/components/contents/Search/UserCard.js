@@ -47,13 +47,13 @@ class UserCard extends Component {
           <img src={PhotoUrl} alt="avatar" />
           <div>{Name}</div>
           <h4 className="user-position">{Position}</h4>
-          <button className="button"
+          <a className="button-add"
             onClick={(e, _id) =>
               this.addPlayer(e, this.state.selectedPlayer._id)
             }
           >
             Follow this player
-          </button>
+          </a>
         </div>
       </React.Fragment>
     );

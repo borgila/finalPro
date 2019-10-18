@@ -3,7 +3,7 @@ import "./Chart.css";
 import { Bar } from "react-chartjs-2";
 let legend = {
   labels: {
-    fontColor: "#000000",
+    fontColor: "white",
     fontSize: 50,
     margin: 20
   },
@@ -12,8 +12,8 @@ let legend = {
 
 let options = {
   scales: {
-    xAxes: [{ ticks: { autoSkip: false, fontSize: 40, padding: 10 } }],
-    yAxes: [{ ticks: { autoSkip: false, fontSize: 40, padding: 10 } }]
+    xAxes: [{ ticks: { autoSkip: false, fontSize: 40, padding: 10, fontColor:"white"} }],
+    yAxes: [{ ticks: { autoSkip: false, fontSize: 40, padding: 10,fontColor:"white" } }]
   }
 };
 
@@ -53,7 +53,7 @@ export default class Chart extends Component {
           label: Name,
           fill: true,
           lineTension: 0.5,
-          backgroundColor: "rgba(51, 109, 233,0.4)",
+          backgroundColor: "#2869D1",
           borderColor: "red",
           borderCapStyle: "butt",
           borderDash: [],

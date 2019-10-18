@@ -11,6 +11,13 @@
   display: flex;
   align-items: center;
   padding: 2%;
+  opacity: 0.7;
+  transition: 0.3s all ease
+}
+.table-teams-item:hover{
+  opacity: 1;
+  transform: scale(1.1)
+
 }
 .img-team{
   width: 10vw;

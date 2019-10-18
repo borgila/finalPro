@@ -9,14 +9,37 @@
 .myTeam-container{
   display: flex;
   flex-wrap: wrap;
+  
 
 }
 .myTeam-item{
   width: 30%;
-  background-color: rgba(60, 0, 255, 0.3);
+  /* background-color: rgba(60, 0, 255, 0.3); */
+  background-color:#1E4FA3;
   margin: 10PX;
+  border-radius: 20px;
+  padding: 30px 0;
+  border:1px solid white;
   
 }
+.myTeam-main h3{
+  font-size: 25px;
+}
+
 .card-name{
-  font-size: 15px;
+  font-size: 32px;
+}
+.remove-button{
+  border-radius: 20px;
+  padding: 10px 15px;
+  border:2px solid #E11646;
+  transition: 0.3s all ease;
+  
+}
+.remove-button:hover{
+  background-color:white;
+  color:     #1E4FA3    
+}
+.remove-button:active{
+  box-shadow: 0 0 4px 0px black;
 }

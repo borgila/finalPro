@@ -1,5 +1,5 @@
 .sought-container {
-  outline: 1px solid orange;
+  
   width: 100%;
   display: flex;
   justify-content: space-evenly;
@@ -9,9 +9,11 @@
 }
 .sought-search-main {
   width: 25%;
-  background-color: #282c34;
+  background-color: #1E50A3;
   margin: 10px;
   border-radius: 30px;
+  border:2px solid white;
+
   /* transition: 0.5s all ease; */
 }
 .sought-search-main:hover {

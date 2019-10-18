@@ -10,7 +10,9 @@
   align-items: center;
   justify-content: top;
   font-size: calc(10px + 2vmin);
-  color:#e11647;
+  color:white;
+  overflow: hidden;
+
 }
 
 .App-link {
@@ -20,4 +22,5 @@
 a {
   color: white;
   cursor: pointer;
+  text-decoration: none;
 }

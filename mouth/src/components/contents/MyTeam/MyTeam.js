@@ -46,12 +46,12 @@ export default class MyTeam extends Component {
               <div className="myTeam-item" key={idx}>
                 <img src={dude.PhotoUrl} />
                 <h2 className="card-name"> {dude.Name}</h2>
-                <h3>Position: {dude.Position}</h3>
+                <h3> {dude.Position}</h3>
                 <h4>Team: {dude.Team}</h4>
                 <h4>Fantasy {dude.FantasyPoints}</h4>
-                <button onClick={e => this.removePlayer(e, dude)}>
+                <a className="remove-button" onClick={e => this.removePlayer(e, dude)}>
                   Remove player
-                </button>
+                </a>
               </div>
             );
           })}

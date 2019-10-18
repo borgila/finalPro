@@ -1,13 +1,15 @@
 .Usercard-container{
   height: 30vw;
   width: 30vw;
-  border: 5px solid #282c34;
-  background-color: #2a4577;
-  border-radius: 50%;
+  border: 1px solid #282c34;
+  background-color: #1E50A3;
+  border-radius: 20px;
   display: grid;
   justify-items: center;
   align-content: center; 
   grid-gap: 15px;
+  margin-right: 2vw;
+  margin-left: 2vw;
   /* padding: 20px; */
 }
 .Usercard-container img{
@@ -18,4 +20,18 @@
 }
 .user-team {
   margin:0;
+}
+.button-add{
+  border-radius: 20px;
+  padding: 10px 15px;
+  border:2px solid #E11646;
+  transition: 0.3s all ease;
+  
+}
+.button-add:hover{
+  background-color:white;
+  color:     #1E4FA3    
+}
+.button-add:active{
+  box-shadow: 0 0 4px 0px black;
 }

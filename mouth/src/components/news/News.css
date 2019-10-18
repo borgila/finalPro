@@ -6,13 +6,16 @@
   flex-wrap: wrap;
 }
 .single-new-wrap{
-  padding: 2%
+  padding: 2%;
+
+  min-width: 95%;
 }
 
 .single-new {
   width: 100%;
+
   min-height: 500px;
-  background-color: #2a4577;
+  background-color: #1e4fa3;
   margin: 10px 5px;
   text-decoration: none;
   border-radius: 20px;
